@@ -45,10 +45,17 @@ function generateTable(size) {
     // table.style.width  = '100px';
     table.style.border = '1px solid black';
 
+    var th = table.createTHead()
+    row = th.insertRow(0)
+    var problem = row.insertCell()
+    problem.innerHTML = "Question"
+    var response = row.insertCell()
+    response.innerHTML = "Réponse"
+    var body = table.createTBody()
     for (var i = 0; i < size; i++){
         let a = getRandomInt(global_max)
         let b = getRandomInt(a, global_max)
-        var tr = table.insertRow()
+        var tr = body.insertRow()
         var equation_repr = tr.insertCell()
         equation_repr.innerText = equation_forme_a_repr(a, b)
         var solution_input = tr.insertCell()
@@ -68,21 +75,34 @@ function generateTable(size) {
     } else {
         document.body.appendChild(table)
     }
-    if (!document.getElementById("btn_verify")) {
-        var btn_verify = document.createElement("button")
-        btn_verify.innerText = "Verifie tes solutions !"
-        btn_verify.id = "btn_verify"
-        btn_verify.onclick = (size) => {
-            btn_verify.innerText = "Verification ..."
-            score = 0
-            let exercice_nbr = forme_a_exercices_verifications.length;
-            for (var i = 0; i < exercice_nbr; i++) {
-                score += forme_a_exercices_verifications[i](
-                    parseInt(document.getElementById("input_solution_" + i).value)
-                ) ? 1 : 0
+
+    let btn_verify_old = document.getElementById("btn_verify");
+    var btn_verify = document.createElement("button")
+    btn_verify.innerText = "Verifie tes solutions !"
+    btn_verify.id = "btn_verify"
+    btn_verify.onclick = () => {
+        btn_verify.innerText = "Verification ..."
+        score = 0
+        let exercice_nbr = forme_a_exercices_verifications.length;
+        for (var i = 0; i < exercice_nbr; i++) {
+            let input_solution = document.getElementById("input_solution_" + i);
+            let isValidSolution = forme_a_exercices_verifications[i](
+                parseInt(input_solution.value)
+            );
+            if (isValidSolution){
+                score += 1
+                input_solution.style.backgroundColor = '#04AA6D';
+            } else {
+                input_solution.style.backgroundColor = '#aa0404';
             }
-            btn_verify.innerText = `Tu as obtenu la note de ${score}/${exercice_nbr}`
+            input_solution.style.color = '#FFFFFF';
+            input_solution.style.fontWeight = 'bold';
         }
+        btn_verify.innerText = `Tu as obtenu la note de ${score}/${exercice_nbr} !` + (score == exercice_nbr ? " Félicitations !" : "")
+    }
+    if (btn_verify_old){
+        document.body.replaceChild(btn_verify, btn_verify_old)
+    } else {
         document.body.appendChild(btn_verify)
     }
 }
