@@ -157,6 +157,7 @@ function generateTable(size) {
             var solution_input = tr.insertCell()
             let input_solution = document.createElement("input", type = "number");
             input_solution.id = "input_solution_" + i
+            input_solution.className = "response"
             solution_input.appendChild(
                 input_solution
             )

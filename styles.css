@@ -9,8 +9,8 @@ h1 {
     width: 100%
 }
 
-input {
-    width: 4ch ;
+#input_size {
+    width: 10%;
     text-align: right;
 }
 
@@ -34,11 +34,14 @@ input {
 }
 
 td:nth-child(1) {
-    width: 80%;
+    width: 50%;
 }
-
 
 td:nth-child(2) {
     width: 20%;
+}
+
+input.response {
+    width: 100%
 }
 #equations_table tr:hover {background-color: #ddd;}
