@@ -146,9 +146,9 @@ function generateTable(size) {
     var th = table.createTHead()
     row = th.insertRow(0)
     var problem = row.insertCell()
-    problem.innerHTML = "Question"
+    problem.innerHTML = "Equation"
     var response = row.insertCell()
-    response.innerHTML = "Réponse"
+    response.innerHTML = "x=?"
     var body = table.createTBody()
     if (selected_nbr > 0) {
         for (var i = 0; i < size; i++) {
