@@ -24,13 +24,14 @@ h1 {
 #equations_table thead {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #04AA6D;
     color: #ffffff;
 }
 #equations_table td, #equations_table th {
     border: 3px solid #ddd;
     padding: 8px;
+    text-align: center;
 }
 
 td:nth-child(1) {
