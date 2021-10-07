@@ -1,8 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
 h1 {
     color: white;
     background: #04AA6D;
     border: 1px black solid;
-    width: 50%
+    width: 100%
 }
 
 input {
